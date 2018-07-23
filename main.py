@@ -47,6 +47,8 @@ class CssiUser(ndb.Model):
   """
   first_name = ndb.StringProperty()
   last_name = ndb.StringProperty()
+  time = ndb.StringProperty()
+  group_size = ndb.StringProperty()
 
 class MainHandler(webapp2.RequestHandler):
   def get(self):
@@ -72,6 +74,8 @@ class MainHandler(webapp2.RequestHandler):
             <form method="post" action="/">
             <input type="text" name="first_name">
             <input type="text" name="last_name">
+            <input type="text" name="time">
+            <input type="text" name="group_size">
             <input type="submit">
             </form><br> %s <br>
             ''' % (email_address, signout_link_html))
@@ -90,11 +94,12 @@ class MainHandler(webapp2.RequestHandler):
     cssi_user = CssiUser(
         first_name=self.request.get('first_name'),
         last_name=self.request.get('last_name'),
+        time=self.request.get('time'),
+        group_size=self.request.get('group_size'),
         id=user.user_id())
     cssi_user.put()
-    self.response.write('Thanks for signing up, %s!' % 
-        cssi_user.first_name)
+    self.response.write("Thanks for signing up, your reservation is at" + str(cssi_user.time) + "with a group size of" + str(cssi_user.group_size))
 
 app = webapp2.WSGIApplication([
-  ('/', MainHandler)
-], debug=True)
+('/', MainHandler)],
+debug=True)
