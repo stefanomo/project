@@ -81,7 +81,6 @@ class MainHandler(webapp2.RequestHandler):
         Please log in to use our site! <br>
         <a href="%s">Sign in</a>''' % (
           users.create_login_url('/')))
-
   def post(self):
     user = users.get_current_user()
     if not user:
