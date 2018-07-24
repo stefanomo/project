@@ -1,4 +1,4 @@
-
+import datetime
 import webapp2
 import jinja2
 import os
@@ -20,7 +20,7 @@ class ReserveHandler(webapp2.RequestHandler):
 class AppUser(ndb.Model):
   first_name = ndb.StringProperty()
   last_name = ndb.StringProperty()
-  time = ndb.DateTimeProperty()
+  time = ndb.StringProperty()
   group_size = ndb.IntegerProperty()
   
 class MainHandler(webapp2.RequestHandler):
@@ -56,10 +56,12 @@ class MainHandler(webapp2.RequestHandler):
       # You shouldn't be able to get here without being logged in
       self.error(500)
       return
+    timestamp = datetime.now()
     app_user = AppUser(
         first_name=self.request.get('first_name'),
         last_name=self.request.get('last_name'),
-        time=datetime.strptime(self.request.get('time'), "%m/%d/%Y %I:%M%p"),
+        
+        time=self.request.get('times'),
         group_size=int(self.request.get('group_size')),
         id=user.user_id())
         
@@ -80,11 +82,18 @@ class HoursHandler(webapp2.RequestHandler):
   def get(self):
     a_template = jinja_env.get_template('location.html')
     self.response.write(a_template.render())
+    
+class LoginHandler(webapp2.RequestHandler):
+  def get(self):
+    a_template = jinja_env.get_template('login.html')
+    self.response.write(a_template.render())
+    
 
 
 app = webapp2.WSGIApplication([
 ('/', MainHandler),
 ('/register', RegisterHandler),
 ('/hours', HoursHandler),
-('/reserve', ReserveHandler)],
+('/reserve', ReserveHandler),
+('/login', LoginHandler)],
 debug=True)
