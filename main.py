@@ -81,10 +81,15 @@ class ReserveHandler(webapp2.RequestHandler):
   def get(self):
     a_template = jinja_env.get_template('reserve.html')
     self.response.write(a_template.render())
+
+class ReservePittHandler(webapp2.RequestHandler):
+  def get(self):
+    a_template = jinja_env.get_template('/templates/reservepitt.html')
+    self.response.write(a_template.render())
     
 class HoursHandler(webapp2.RequestHandler):
   def get(self):
-    a_template = jinja_env.get_template('location.html')
+    a_template = jinja_env.get_template('hours.html')
     self.response.write(a_template.render())
     
 class LoginHandler(webapp2.RequestHandler):
@@ -99,10 +104,24 @@ class LoginHandler(webapp2.RequestHandler):
       return
       # You are logged in!
 
+class LocationHoursHandler(webapp2.RequestHandler):
+  def get(self):
+    a_template = jinja_env.get_template('locationhours.html')
+    self.response.write(a_template.render())
+
+class LocationReserveHandler(webapp2.RequestHandler):
+  def get(self):
+    a_template = jinja_env.get_template('locationreserve.html')
+    self.response.write(a_template.render())
+    
+
 app = webapp2.WSGIApplication([
 ('/', MainHandler),
 ('/register', RegisterHandler),
 ('/hours', HoursHandler),
 ('/reserve', ReserveHandler),
-('/login', LoginHandler)],
+('/login', LoginHandler),
+('/locationhours', LocationHoursHandler),
+('/locationreserve', LocationReserveHandler),
+('/reservepitt', ReservePittHandler)],
 debug=True)

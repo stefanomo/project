@@ -1,3 +1,4 @@
+
 /* Dropdown Button */
 .dropbtn {
     background-color: #3498DB;
@@ -44,6 +45,7 @@
 .show {display:block;}
 
 body {
-   background-image: url("paper.gif");
+   background-image: url("Italy.png");
    background-color: #cccccc;
+   background-size: 1440px 1440px;
 }
