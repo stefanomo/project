@@ -88,7 +88,12 @@ class LoginHandler(webapp2.RequestHandler):
     a_template = jinja_env.get_template('login.html')
     self.response.write(a_template.render())
     
-
+  def post(self):
+    user = users.get_current_user()
+    if user:
+      # Redirect to homepage
+      return
+      # You are logged in!
 
 app = webapp2.WSGIApplication([
 ('/', MainHandler),
