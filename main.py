@@ -80,7 +80,7 @@ class ReserveHandler(webapp2.RequestHandler):
 
 class ReservePittHandler(webapp2.RequestHandler):
   def get(self):
-    a_template = jinja_env.get_template('reservepitt.html')
+    a_template = jinja_env.get_template('/templates/reservepitt.html')
     self.response.write(a_template.render())
     
 class HoursHandler(webapp2.RequestHandler):
