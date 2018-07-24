@@ -21,7 +21,7 @@ class AppUser(ndb.Model):
   first_name = ndb.StringProperty()
   last_name = ndb.StringProperty()
   time = ndb.StringProperty()
-  group_size = ndb.IntegerProperty()
+  group_size = ndb.StringProperty()
   
 class MainHandler(webapp2.RequestHandler):
   def get(self):
@@ -57,17 +57,21 @@ class MainHandler(webapp2.RequestHandler):
       self.error(500)
       return
     timestamp = datetime.now()
+    first_name=self.request.get('first_name')
+    last_name=self.request.get('last_name') 
+    time=self.request.get('times'),
+    group_size= self.request.get('group_size')
     app_user = AppUser(
         first_name=self.request.get('first_name'),
         last_name=self.request.get('last_name'),
         
         time=self.request.get('times'),
-        group_size=int(self.request.get('group_size')),
+        group_size= self.request.get('group_size'),
         id=user.user_id())
         
     app_user.put()
-    self.response.write("Thanks for signing up, your reservation is at" + str(app_user.time)  +  "with a group size of"  +  str(app_user.group_size))
-
+    a_template = jinja_env.get_template('reserve.html')
+    self.response.write(a_template.render(group_size=group_size,time=time))
 class RegisterHandler(webapp2.RequestHandler):
   def get(self):
     a_template = jinja_env.get_template('register.html')
