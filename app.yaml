@@ -14,8 +14,12 @@ handlers:
   upload: main\.js
 
 - url: /index\.css
-  static_files: index.css
+  static_files: /static/*
   upload: index\.css
+  
+- url: /static/(.*\.(gif|png|jpg))$
+  static_files: static/\1
+  upload: static/.*\.(gif|png|jpg)$
 
 - url: .*
   script: main.app
