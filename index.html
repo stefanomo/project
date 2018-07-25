@@ -78,6 +78,8 @@ body {
       <img id="img1" src="images/main_background2.jpg" width="1422" height="700">
       <img id="img2" src="https://www.daringgourmet.com/wp-content/uploads/2015/12/Fettuccine-Alfredo-5.jpg" width="709" height="500">
       <img id="img3" src="https://media4.s-nbcnews.com/j/MSNBC/Components/Video/201802/tdy_pop_klg_steak_180215_1920x1080.today-inline-vid-featured-desktop.jpg" width="709" height="500">
+      <img id="img4" src="https://biltmore.s3.amazonaws.com/976/shop-wines-fb.jpg" width="709" height="500">
+      <img id="img5" src="https://www.thescottishsun.co.uk/wp-content/uploads/sites/2/2017/04/gord21.jpg?strip=all&w=960&quality=100" width="709" height="500">
     </div>
 <script>
 function openNav() {
@@ -89,6 +91,18 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
+
+    <div id="map">My map will go here</div>
+    <div id="map" style="width:400px;height:400px">
+function myMap() {
+    var mapOptions = {
+        center: new google.maps.LatLng(51.5, -0.12),
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.HYBRID
+    }
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+
 </script>
       </div>
     </div>
