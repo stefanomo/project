@@ -20,6 +20,7 @@ class ReserveHandler(webapp2.RequestHandler):
 class AppUser(ndb.Model):
   first_name = ndb.StringProperty()
   last_name = ndb.StringProperty()
+  date = ndb.StringProperty()
   time = ndb.StringProperty()
   group_size = ndb.StringProperty()
   
@@ -55,13 +56,14 @@ class MainHandler(webapp2.RequestHandler):
     timestamp = datetime.now()
     first_name=self.request.get('first_name')
     last_name=self.request.get('last_name') 
-    time=self.request.get('times'),
+    date=self.request.get('date'),
+    time=self.request.get('time'),
     group_size= self.request.get('group_size')
     app_user = AppUser(
         first_name=self.request.get('first_name'),
         last_name=self.request.get('last_name'),
-        
-        time=self.request.get('times'),
+        date=self.request.get('date'),
+        time=self.request.get('time'),
         group_size= self.request.get('group_size'),
         id=user.user_id())
         
