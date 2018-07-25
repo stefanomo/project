@@ -5,6 +5,7 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
@@ -14,9 +15,6 @@ handlers:
   static_files: main.js
   upload: main\.js
 
-- url: /index\.css
-  static_files: /static/*
-  upload: index\.css
   
 - url: /static/(.*\.(gif|png|jpg))$
   static_files: static/\1

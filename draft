@@ -1,0 +1,74 @@
+<html>
+  <head>
+  <style>.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+body {
+   background-image: url("Italy.png");
+   background-color: #cccccc;
+   background-size: 1440px 1440px;
+}</style>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="Steufonzos.ico">
+    <script src="main.js" type="text/javascript"></script>
+    <title>Steufonzo's Bistro</title>
+  </head>
+  <body>
+  <center><h1>Steufonzo's Bistro</h1>
+    <h2>"Eat Here Or Be Square"</h2></center>
+    <div>
+      <img id="img1" src="images/main_background2.jpg" width="1422" height="700">
+      <img id="img2" src="https://www.fiberpanel.com/wp-content/uploads/2016/10/Bistro-34-Gayrettepe-01.jpg" width="710" height="500">
+      <img id="img3" src="https://cdn.vossy.com/hotel_images/hotels/565212/hotel-moments-budapest-restaurant.jpg" width="710" height="500">
+    </div>
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Search</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#">Menu</a>
+        <a href="/locationhours">Hours/Location</a>
+        <a href="/locationreserve">Reservation</a>
+        <a href="/register">Login/Register</a>
+      </div>
+    </div>
+  </body>
+</html>
