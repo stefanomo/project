@@ -49,6 +49,58 @@ body {
   .sidenav a {font-size: 18px;}
 }
 </style>
+    <style>
+        #button_one{
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+        }
+      body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+        .modal {
+           display: none; /* Hidden by default */
+           position: fixed; /* Stay in place */
+           z-index: 1; /* Sit on top */
+           padding-top: 100px; /* Location of the box */
+           left: 0;
+           top: 0;
+           width: 100%; /* Full width */
+           height: 100%; /* Full height */
+           overflow: auto; /* Enable scroll if needed */
+           background-color: rgb(0,0,0); /* Fallback color */
+           background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+    </style>
 
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/png" href="Steufonzos.ico">
@@ -60,7 +112,7 @@ body {
 
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">Menu</a>
+      <a href="/menupicture">Menu</a>
         <a href="/locationhours">Hours/Location</a>
         <a href="/reserve">Reservation</a>
         <a href="/register">Login/Register</a>
@@ -90,7 +142,6 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
-      </div>
-    </div>
+
   </body>
 </html>
