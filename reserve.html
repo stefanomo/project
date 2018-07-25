@@ -56,6 +56,15 @@
     cursor: pointer;
 }
     </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+   
+  <script>
+  $(document).ready(function() {
+    $("#datepicker").datepicker();
+  });
+  </script>
   </head>
   <body>
     <div>
@@ -64,12 +73,15 @@
     <button id="button_one" onclick="myFunction()">Make a Reservation</button>
 
 <div id="myDIV">
+  <form id="new" method="post" action="/">
     <label for="first_name">First Name</label>
     <input type="text" name="first_name">
     <label for="last_name">Last Name</label>
     <input type="text" name="last_name">
      <label for="date">Date</label>
-    <input type="text" name="date">
+    <form>
+    <input id="datepicker" />
+    </form>
     <label for="text">Group Size</label>
     <input type="text" name="group_size">
     <label>Time</label>
@@ -108,18 +120,11 @@
     <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Thank you for submitting your reservation!</p>
+        <p>Reserved!</p>
       </div>
 
       </div>
-<!--<div>
-Thanks for signing up, your reservation is at {{ time }} with a group size of {{ group_size }}
-</div>
-<div>
-<form action = "/">
-<input type = "submit" value = "back" name = "back">
-</form>
-</div> -->
+  </form>
 <script>
 function myFunction() {
     var x = document.getElementById("myDIV");
