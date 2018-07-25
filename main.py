@@ -28,18 +28,15 @@ class MainHandler(webapp2.RequestHandler):
     user = users.get_current_user()
     # If the user is logged in...
     if user:
-        signout = users.create_logout_url('/')
-        email_address = user.nickname()
         app_user = AppUser.get_by_id(user.user_id())
         a_template = jinja_env.get_template('index.html')
-        self.response.out.write(a_template.render(signout=signout))
+
       # If the user has previously been to our site, we greet them!
         if app_user:
-            signout_link_html = '<a href="%s">sign out</a>' % (
-              users.create_logout_url('/'))
-        
-      # If the user hasn't been to our site, we ask them to sign up
+            signout = users.create_logout_url('/')
+            self.response.out.write(a_template.render(signout=signout))
         else:
+            # If the user hasn't been to our site, we ask them to sign up
             a_template = jinja_env.get_template('index.html')
             self.response.out.write(a_template.render())
     # Otherwise, the user isn't logged in!
@@ -48,6 +45,7 @@ class MainHandler(webapp2.RequestHandler):
         Please log in to use our site! <br>
         <a href="%s">Sign in</a>''' % (
           users.create_login_url('/')))
+
   def post(self):
     user = users.get_current_user()
     if not user:
