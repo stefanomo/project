@@ -113,21 +113,10 @@ class ReserveHandler(webapp2.RequestHandler):
     self.response.write(a_template.render())
     
 class AdminHandler(webapp2.RequestHandler):
-  def post(self):
-    first_name=self.request.get('first_name')
-    last_name=self.request.get('last_name') 
-    time=self.request.get('times')
-    group_size= self.request.get('group_size')
-    app_user = AppUser(
-        first_name=self.request.get('first_name'),
-        last_name=self.request.get('last_name'),
-        
-        time=self.request.get('times'),
-        group_size= self.request.get('group_size'))
-        
-    app_user.put()
-    a_template = jinja_env.get_template('admin.html')
-    self.response.write(a_template.render(time = time, group_size=group_size))
+  def get(self):
+    reservation = AppUser.query().fetch()
+    for reserves in reservation:
+        self.response.write('''Name: %s %s <br> Reservation Time: %s <br> Group Size: %s''' % (reserves.first_name,reserves.last_name,reserves.time,reserves.group_size))
     
 
 app = webapp2.WSGIApplication([
