@@ -24,6 +24,7 @@ class AppUser(ndb.Model):
   seat = ndb.StringProperty()
   time = ndb.StringProperty()
   group_size = ndb.StringProperty()
+  location = ndb.StringProperty()
   
 class MainHandler(webapp2.RequestHandler):
   def get(self):
@@ -71,8 +72,10 @@ class MainHandler(webapp2.RequestHandler):
     last_name=self.request.get('last_name'),
     date=self.request.get('date'),
     time=self.request.get('time'),
-    group_size= self.request.get('group_size')
+    group_size= self.request.get('group_size'),
     seat=self.request.get('seat'),
+    location=self.request.get('location')
+    
     
     app_user = AppUser(
         first_name=self.request.get('first_name'),
@@ -81,6 +84,7 @@ class MainHandler(webapp2.RequestHandler):
         date=self.request.get('date'),
         time=self.request.get('time'),
         group_size= self.request.get('group_size'),
+        location=self.request.get('location')
       )
         
     app_user.put()
@@ -97,9 +101,19 @@ class ReserveHandler(webapp2.RequestHandler):
     a_template = jinja_env.get_template('reserve.html')
     self.response.write(a_template.render())
 
+class LocationReserveHandler(webapp2.RequestHandler):
+  def get(self):
+    a_template = jinja_env.get_template('locationreserve.html')
+    self.response.write(a_template.render())
+
 class ReservePittHandler(webapp2.RequestHandler):
   def get(self):
-    a_template = jinja_env.get_template('/templates/reservepitt.html')
+    a_template = jinja_env.get_template('reservepitt.html')
+    self.response.write(a_template.render())
+    
+class ReservePhillyHandler(webapp2.RequestHandler):
+  def get(self):
+    a_template = jinja_env.get_template('reservephilly.html')
     self.response.write(a_template.render())
     
 class HoursHandler(webapp2.RequestHandler):
@@ -124,17 +138,11 @@ class LocationHoursHandler(webapp2.RequestHandler):
     a_template = jinja_env.get_template('locationhours.html')
     self.response.write(a_template.render())
 
-
 class ReserveHandler(webapp2.RequestHandler):
   def get(self):
     a_template = jinja_env.get_template('reserve.html')
     self.response.write(a_template.render())
-    
-class CalenderHandler(webapp2.RequestHandler):
-  def get(self):
-    a_template = jinja_env.get_template('calender.html')
-    self.response.write(a_template.render())
-    
+  
 class MenuHandler(webapp2.RequestHandler):
   def get(self):
     a_template = jinja_env.get_template('menupicture.html')
@@ -144,19 +152,19 @@ class AdminHandler(webapp2.RequestHandler):
   def get(self):
     reservation = AppUser.query().fetch()
     for reserves in reservation:
-        self.response.write('''Name: %s %s <br> Reservation Time: %s <br> Group Size: %s <br> Date: %s <br> Seat: %s <br>''' % (reserves.first_name,reserves.last_name,reserves.time,reserves.group_size,reserves.date,reserves.seat))
+        self.response.write('''Location: %s <br> Name: %s %s <br> Reservation Time: %s <br> Group Size: %s <br> Date: %s <br> Seat: %s <br>''' % (reserves.location,reserves.first_name,reserves.last_name,reserves.time,reserves.group_size,reserves.date,reserves.seat))
     
 
 app = webapp2.WSGIApplication([
 ('/', MainHandler),
-('/calender', CalenderHandler),
 ('/admin', AdminHandler),
 ('/register', RegisterHandler),
-('/hours', HoursHandler),
+('/locationreserve', LocationReserveHandler),
+('/reservepitt', ReservePittHandler),
+('/reservephilly', ReservePhillyHandler),
 ('/menupicture', MenuHandler),
 ('/reserve', ReserveHandler),
 ('/login', LoginHandler),
 ('/locationhours', LocationHoursHandler),
-('/reservepitt', ReservePittHandler),
 ('/menupicture', MenuHandler)],
 debug=True)
