@@ -120,6 +120,11 @@ class CalenderHandler(webapp2.RequestHandler):
     a_template = jinja_env.get_template('calender.html')
     self.response.write(a_template.render())
     
+class MenuHandler(webapp2.RequestHandler):
+  def get(self):
+    a_template = jinja_env.get_template('menupicture.html')
+    self.response.write(a_template.render())
+    
 class AdminHandler(webapp2.RequestHandler):
   def get(self):
     reservation = AppUser.query().fetch()
@@ -137,5 +142,6 @@ app = webapp2.WSGIApplication([
 ('/reserve', ReserveHandler),
 ('/login', LoginHandler),
 ('/locationhours', LocationHoursHandler),
-('/reservepitt', ReservePittHandler)],
+('/reservepitt', ReservePittHandler),
+('/menupicture', MenuHandler)],
 debug=True)
