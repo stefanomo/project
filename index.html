@@ -5,7 +5,13 @@
 body {
     font-family: "Lato", sans-serif;
 }
-
+#top{
+    position: fixed;
+    top: 0px;
+    background-color: white;
+    width : 100%;
+    
+}
 .sidenav {
     height: 100%;
     width: 0;
@@ -118,14 +124,15 @@ body {
         <a href="/register">Login/Register</a>
         <a href="{{ signout }}">Sign out</a>
     </div>
-    
+    <div id = "top">
     <div id="main">
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Open</span>
     </div>
 
         
     <center><h1>Steufonzo's Bistro</h1>
     <h2>"Eat Here Or Be Square"</h2></center>
+    </div>
     <div>
       <img id="img1" src="images/main_background2.jpg" width="1422" height="700">
       <img id="img2" src="https://www.daringgourmet.com/wp-content/uploads/2015/12/Fettuccine-Alfredo-5.jpg" width="709" height="500">
@@ -142,17 +149,6 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
-}
-
-    <div id="map">My map will go here</div>
-    <div id="map" style="width:400px;height:400px">
-function myMap() {
-    var mapOptions = {
-        center: new google.maps.LatLng(51.5, -0.12),
-        zoom: 10,
-        mapTypeId: google.maps.MapTypeId.HYBRID
-    }
-var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 }
 
 </script>
