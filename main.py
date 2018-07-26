@@ -21,12 +21,25 @@ class AppUser(ndb.Model):
   first_name = ndb.StringProperty()
   last_name = ndb.StringProperty()
   date = ndb.StringProperty()
+  seat = ndb.StringProperty()
   time = ndb.StringProperty()
   group_size = ndb.StringProperty()
   
 class MainHandler(webapp2.RequestHandler):
   def get(self):
     user = users.get_current_user()
+    time = self.request.get('group_size')
+    print time
+    if time:
+        self.response.write('''
+        <button id = "myBtn"> Check Reservation</button>
+         <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Reserved!</p>
+      </div>''')
     # If the user is logged in...
     if user:
         app_user = AppUser.get_by_id(user.user_id())
@@ -53,23 +66,27 @@ class MainHandler(webapp2.RequestHandler):
       # You shouldn't be able to get here without being logged in
       self.error(500)
       return
-    timestamp = datetime.now()
-    first_name=self.request.get('first_name')
-    last_name=self.request.get('last_name') 
+    timestamp = datetime.now(),
+    first_name=self.request.get('first_name'),
+    last_name=self.request.get('last_name'),
     date=self.request.get('date'),
     time=self.request.get('time'),
     group_size= self.request.get('group_size')
+    seat=self.request.get('seat'),
+    
     app_user = AppUser(
         first_name=self.request.get('first_name'),
         last_name=self.request.get('last_name'),
+        seat=self.request.get('seat'),
         date=self.request.get('date'),
         time=self.request.get('time'),
         group_size= self.request.get('group_size'),
-        id=user.user_id())
+      )
         
     app_user.put()
     a_template = jinja_env.get_template('index.html')
     self.response.write(a_template.render(group_size=group_size,time=time))
+    
 class RegisterHandler(webapp2.RequestHandler):
   def get(self):
     a_template = jinja_env.get_template('register.html')
@@ -106,15 +123,13 @@ class LocationHoursHandler(webapp2.RequestHandler):
   def get(self):
     a_template = jinja_env.get_template('locationhours.html')
     self.response.write(a_template.render())
-class MenuHandler(webapp2.RequestHandler):
-  def get(self):
-    a_template = jinja_env.get_template('menupicture.html')
-    self.response.write(a_template.render())
+
 
 class ReserveHandler(webapp2.RequestHandler):
   def get(self):
     a_template = jinja_env.get_template('reserve.html')
     self.response.write(a_template.render())
+    
 class CalenderHandler(webapp2.RequestHandler):
   def get(self):
     a_template = jinja_env.get_template('calender.html')
@@ -129,7 +144,7 @@ class AdminHandler(webapp2.RequestHandler):
   def get(self):
     reservation = AppUser.query().fetch()
     for reserves in reservation:
-        self.response.write('''Name: %s %s <br> Reservation Time: %s <br> Group Size: %s''' % (reserves.first_name,reserves.last_name,reserves.time,reserves.group_size))
+        self.response.write('''Name: %s %s <br> Reservation Time: %s <br> Group Size: %s <br> Date: %s <br> Seat: %s <br>''' % (reserves.first_name,reserves.last_name,reserves.time,reserves.group_size,reserves.date,reserves.seat))
     
 
 app = webapp2.WSGIApplication([
