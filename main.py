@@ -24,7 +24,11 @@ class AppUser(ndb.Model):
   seat = ndb.StringProperty()
   time = ndb.StringProperty()
   group_size = ndb.StringProperty()
+<<<<<<< HEAD
   location = ndb.StringProperty()
+=======
+  user_date = ndb.StringProperty()
+>>>>>>> fbe1794b27658957e522013c0bf3b3b18f83047e
   
 class MainHandler(webapp2.RequestHandler):
   def get(self):
@@ -78,6 +82,7 @@ class MainHandler(webapp2.RequestHandler):
     
     
     app_user = AppUser(
+        user_date = self.request.get('user_date'),
         first_name=self.request.get('first_name'),
         last_name=self.request.get('last_name'),
         seat=self.request.get('seat'),
@@ -150,9 +155,16 @@ class MenuHandler(webapp2.RequestHandler):
     
 class AdminHandler(webapp2.RequestHandler):
   def get(self):
-    reservation = AppUser.query().fetch()
+    chosen_date = self.request.get("user_date")
+    reservation = AppUser.query().filter(AppUser.date == chosen_date).fetch()
+    self.response.write('<form> <input type = "text" name = "user_date"> <input type="submit"> </form>')
     for reserves in reservation:
+<<<<<<< HEAD
         self.response.write('''Location: %s <br> Name: %s %s <br> Reservation Time: %s <br> Group Size: %s <br> Date: %s <br> Seat: %s <br>''' % (reserves.location,reserves.first_name,reserves.last_name,reserves.time,reserves.group_size,reserves.date,reserves.seat))
+=======
+        self.response.write(''' 
+        Name: %s %s <br> Reservation Time: %s <br> Group Size: %s <br> Date: %s <br> Seat: %s <br>''' % (reserves.first_name,reserves.last_name,reserves.time,reserves.group_size,reserves.date,reserves.seat))
+>>>>>>> fbe1794b27658957e522013c0bf3b3b18f83047e
     
 
 app = webapp2.WSGIApplication([
