@@ -57,6 +57,7 @@
     <style>
 body {
     font-family: "Lato", sans-serif;
+     background-image: url("https://raw.githubusercontent.com/noyoshi/wallpapers/master/green_boye.png")
 }
 #top{
     position: fixed;
@@ -114,14 +115,24 @@ body {
   </head>
   
   <body>
-    <div id="mySidenav" class="sidenav">
+     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/menupicture">Menu</a>
         <a href="/locationhours">Hours/Location</a>
-        <a href="/reserve">Reservation</a>
+        <a href="/locationreserve">Reservation</a>
         <a href="/register">Login/Register</a>
         <a href="{{ signout }}">Sign out</a>
     </div>
+    <script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+} </script>
     
     <div id = "top">
       <div id="main">
@@ -133,9 +144,6 @@ body {
   
     <div class="blackFull homeLocHeading"><h2 class="whiteUp"><center><h1>Choose Your Steufonzo's Bistro</h1></h2></div>
     
-    <div class="homeLocation">
-    
-    <img src="https://www.fiberpanel.com/wp-content/uploads/2016/10/Bistro-34-Gayrettepe-01.jpg" alt="philadelphia image" class="pb-10" width="600" height="500"">
     
     <div>
       <button 
@@ -156,14 +164,21 @@ body {
     </div>
 
     <div>
-      <img src="https://cdn.vossy.com/hotel_images/hotels/565212/hotel-moments-budapest-restaurant.jpg" alt="pittsburgh image" class="pb-10" width="600" height="500">
-      <button
+     <img src="https://www.fiberpanel.com/wp-content/uploads/2016/10/Bistro-34-Gayrettepe-01.jpg" alt="philadelphia image" class="pb-10" width="600" height="500"">
+       <button style="width:100px; height:100px;
         id="myBtn"
-        value="Open on Monday-Friday 10:00am-10:00pm  Saturday 12:00 pm-8:00pm Sunday closed lkjfhtrfjgkhljftd"
+        value="Open on Monday-Friday 10:00am-10:00pm  Saturday 12:00 pm-8:00pm Sunday closed"
+        onclick="showModal(this.value)"
+      >Philadelphia
+      </button>
+      <img src="https://cdn.vossy.com/hotel_images/hotels/565212/hotel-moments-budapest-restaurant.jpg" alt="pittsburgh image" class="pb-10" width="600" height="500">
+      <button style="width:100px; height:100px;"
+        id="myBtn"
+        value="Open on Monday-Friday 10:00am-10:00pm  Saturday 12:00 pm-8:00pm Sunday closed"
         onclick="showModal(this.value)"
         >Pittsburgh
       </button>
-
+     
       <script>
         var modal = document.getElementById('myModal');
 

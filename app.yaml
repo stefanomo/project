@@ -4,11 +4,19 @@ threadsafe: yes
 
 handlers:
 
+- url: /css 
+  static_dir: css
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
 - url: /images
   static_dir: images
+- url: /js
+  static_dir: js
+
+- url: /fonts
+  static_dir: fonts
+  
 - url: /main\.js
   static_files: main.js
   upload: main\.js

@@ -143,7 +143,7 @@ class LocationHoursHandler(webapp2.RequestHandler):
 
 class ReserveHandler(webapp2.RequestHandler):
   def get(self):
-    a_template = jinja_env.get_template('reserve.html')
+    a_template = jinja_env.get_template('templates/a.html')
     self.response.write(a_template.render())
   
 class MenuHandler(webapp2.RequestHandler):
@@ -157,8 +157,23 @@ class AdminHandler(webapp2.RequestHandler):
     reservation = AppUser.query().filter(AppUser.date == chosen_date).fetch()
     self.response.write('<form> <input type = "text" name = "user_date"> <input type="submit"> </form>')
     for reserves in reservation:
-        self.response.write('''Location: %s <br> Name: %s %s <br> Reservation Time: %s <br> Group Size: %s <br> Date: %s <br> Seat: %s <br>''' % (reserves.location,reserves.first_name,reserves.last_name,reserves.time,reserves.group_size,reserves.date,reserves.seat))
-
+        self.response.write(''' <head>
+<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Simple Line Icons -->
+	<link rel="stylesheet" href="css/simple-line-icons.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<!-- Style -->
+	<link rel="stylesheet" href="css/style.css">
+</head> <br> Name: %s %s <br> Reservation Time: %s <br> Group Size: %s <br> Date: %s <br> Seat: %s <br>''' % (reserves.first_name,reserves.last_name,reserves.time,reserves.group_size,reserves.date,reserves.seat))
+#    a_template = jinja_env.get_template('admin.html')
+#    self.response.write(a_template.render())
     
 
 app = webapp2.WSGIApplication([

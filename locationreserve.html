@@ -3,6 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="index.css">
+    
     <link rel="icon" type="image/ico" href="file://home/eunice6631/favicon.ico"/>
     <style>    
       body {
@@ -80,15 +81,24 @@ body {
   </head>
   
   <body>
-    <div id="mySidenav" class="sidenav">
+     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/menupicture">Menu</a>
         <a href="/locationhours">Hours/Location</a>
-        <a href="/reserve">Reservation</a>
+        <a href="/locationreserve">Reservation</a>
         <a href="/register">Login/Register</a>
         <a href="{{ signout }}">Sign out</a>
     </div>
-    
+    <script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+} </script>
     <div id = "top">
       <div id="main">
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Open</span>
